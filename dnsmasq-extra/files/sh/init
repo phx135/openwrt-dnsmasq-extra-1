@@ -154,7 +154,6 @@ update(){
 	update_sub 'gfwlist'
 	update_sub 'direct'
 	update_sub 'koolproxy'
-	update_chn
 }
 
 update_sub(){
