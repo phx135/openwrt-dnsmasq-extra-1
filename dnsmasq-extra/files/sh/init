@@ -184,27 +184,6 @@ update_sub(){
 	cp -f "${bak}" "${file}" || cp -f "/rom${file}" "${file}"
 }
 
-update_chn(){
-	chnroute=/etc/dnsmasq-extra.d/chnroute.txt
-	[ "Z$chnroute" != "Z" ] || return 0
-
-	chnsrc='https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt'
-
-	echo "# $chnroute Updating"
-	curl --connect-timeout 10 --max-time 120 -ksSL $chnsrc -o $chnroute
-	if [ $? -eq 0 ]; then
-		echo "# $chnroute Updated"
-	else
-		echo "# $chnroute NOT Updated"
-	fi
-
-	if [ ! -f "$chnroute" ] || [ $(ls -l "$chnroute" | awk '{print $5}') -lt 4096 ]; then
-		echo "# $chnroute is broken, failsafe Now!"
-		rm -f "$chnroute"
-		cp -f "/rom$chnroute" "$chnroute"
-	fi
-}
-
 rules(){
 	while iptables -t nat -D PREROUTING -p udp --dport 53 -j REDIRECT --to 53 2>/dev/null; do :; done
 	while iptables -t mangle -D PREROUTING -p udp --dport 53 -j RETURN 2>/dev/null; do :; done
