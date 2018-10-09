@@ -154,6 +154,7 @@ update(){
 	update_sub 'gfwlist'
 	update_sub 'direct'
 	update_sub 'koolproxy'
+	update_sub 'adblock'
 }
 
 update_sub(){
