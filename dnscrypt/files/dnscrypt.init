@@ -35,7 +35,7 @@ start_service() {
 	add_cron
 
 	mkdir -p /var/etc/
-	[ -f /var/etc/public-resolvers.md ] || cp -f /etc/dnscrypt-init-resolvers.md /var/etc/public-resolvers.md
+	[ -e /var/etc/dnscrypt.d ] || cp -rf /etc/dnscrypt.d /var/etc/
 
 	local port=$(uci_get_by_type $NAME port 7400)
 
@@ -63,7 +63,7 @@ cache_neg_max_ttl = 600
 [sources]
   [sources.'public-resolvers']
   urls = ['https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v2/public-resolvers.md', 'https://www.evilvibes.com/list/public-resolvers.md']
-  cache_file = '/var/etc/public-resolvers.md'
+  cache_file = '/var/etc/dnscrypt.d/public-resolvers.md'
   minisign_key = 'RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3'
   refresh_delay = 72
   prefix = ''
