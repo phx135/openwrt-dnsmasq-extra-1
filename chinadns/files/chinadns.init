@@ -34,11 +34,11 @@ start_service() {
 
 	local alldns=$(uci_get_by_type $NAME cn_dns)
 	local subport=$(uci_get_by_type $NAME port)
-	local subcdns=$(uci_get_by_type $NAME ww_dns)
+	local subcdns=$(uci_get_by_type $NAME ww_dns | sed 's;[^ ]*:53;;g')
 	for dns in $(uci_get_by_type $NAME ww_dns); do
 		let subport=$((subport + 1))
 		alldns="${alldns},127.0.0.1#${subport}"
-		subcdns="${subcdns} 127.0.0.1:${subport}"
+		( echo $dns | grep -q ':53' ) || subcdns="${subcdns} 127.0.0.1:${subport}"
 		start_instance /usr/bin/dns-forwarder -p $subport -s $dns
 	done
 
@@ -56,6 +56,7 @@ start_service() {
 	    "servers": [
 	      { "ip_port": "9.9.9.9:53" },
 	      { "ip_port": "80.80.80.80:53" },
+	      { "ip_port": "216.146.35.35:53" },
 	      { "ip_port": "101.132.183.99:53" },
 	      { "ip_port": "193.112.15.186:53" },
 	      { "ip_port": "193.112.15.186:2323" },
