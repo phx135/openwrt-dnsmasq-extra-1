@@ -55,7 +55,7 @@ define Package/dnsmasq-extra/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/sh/uci-defaults $(1)/etc/uci-defaults/dnsmasq-extra
 	$(INSTALL_DIR) $(1)/etc/dnsmasq-extra.d
-	$(INSTALL_DATA) ./files/data/{gfwlist,tldn,direct,adblock,koolproxy,custom.conf,chnroute.txt} $(1)/etc/dnsmasq-extra.d/
+	$(INSTALL_DATA) ./files/data/{gfwlist,tldn,direct,koolproxy,custom.conf,chnroute.txt} $(1)/etc/dnsmasq-extra.d/
 endef
 
 $(eval $(call BuildPackage,dnsmasq-extra))
