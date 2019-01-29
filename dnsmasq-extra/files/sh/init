@@ -105,7 +105,7 @@ EOF
 EOF
 	fi
 
-	echo -n "ABDLOCK, " && ( sed "s/^/address=\//;s/$/\/${BLOCK}/" $IPSETDIR/adblock > $DNSMASQDIR/adblock.conf )
+	#echo -n "ABDLOCK, " && ( sed "s/^/address=\//;s/$/\/${BLOCK}/" $IPSETDIR/adblock > $DNSMASQDIR/adblock.conf )
 	echo -n "CUSTOM" && ( echo "conf-file=$IPSETDIR/custom.conf" > $DNSMASQDIR/custom.conf )
 
 	echo "all-servers" > $DNSMASQDIR/alls.conf
@@ -127,7 +127,7 @@ clean_dir() {
 	rm -rf $DNSMASQDIR/dnscpt.conf    2>/dev/null
 	rm -rf $DNSMASQDIR/ssdns.conf     2>/dev/null
 	rm -rf $DNSMASQDIR/ssrdns.conf    2>/dev/null
-#	rm -rf $DNSMASQDIR/adblock.conf   2>/dev/null
+	#rm -rf $DNSMASQDIR/adblock.conf   2>/dev/null
 	rm -rf $DNSMASQDIR/gfwlist.conf   2>/dev/null
 	rm -rf $DNSMASQDIR/direct.conf    2>/dev/null
 	rm -rf $DNSMASQDIR/koolproxy.conf 2>/dev/null
