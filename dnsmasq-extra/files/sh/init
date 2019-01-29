@@ -127,7 +127,7 @@ clean_dir() {
 	rm -rf $DNSMASQDIR/dnscpt.conf    2>/dev/null
 	rm -rf $DNSMASQDIR/ssdns.conf     2>/dev/null
 	rm -rf $DNSMASQDIR/ssrdns.conf    2>/dev/null
-	rm -rf $DNSMASQDIR/adblock.conf   2>/dev/null
+#	rm -rf $DNSMASQDIR/adblock.conf   2>/dev/null
 	rm -rf $DNSMASQDIR/gfwlist.conf   2>/dev/null
 	rm -rf $DNSMASQDIR/direct.conf    2>/dev/null
 	rm -rf $DNSMASQDIR/koolproxy.conf 2>/dev/null
