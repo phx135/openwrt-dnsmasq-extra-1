@@ -131,13 +131,13 @@ restart() {
 update(){
 	update_sub 'gfwlist'
 	update_sub 'direct'
-	update_chn
+	#update_chn
 }
 
 update_sub(){
 	sub=$1
 	file="/etc/${NAME}.d/${sub}"
-	src="https://raw.githubusercontent.com/chenhw2/openwrt-${NAME}/master/${NAME}/files/data/${sub}"
+	src="https://raw.githubusercontent.com/jack338c/openwrt-${NAME}/master/${NAME}/files/data/${sub}"
 
 	oldHash=$(md5sum ${file} 2>/dev/null | sed 's/ .*//g')
 	newHash=$(curl --connect-timeout 5 --max-time 20 -ksSL ${src}.md5sum | sed 's/ .*//g')
