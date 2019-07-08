@@ -5,8 +5,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dnsmasq-extra
-PKG_VERSION:=2019-05-07
-PKG_RELEASE:=1.1
+PKG_VERSION:=2019-06-27
+PKG_RELEASE:=1.2
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
@@ -50,12 +50,14 @@ define Package/dnsmasq-extra/conffiles
 endef
 
 define Package/dnsmasq-extra/install
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) ./files/config $(1)/etc/config/dnsmasq-extra
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/sh/init $(1)/etc/init.d/dnsmasq-extra
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/sh/uci-defaults $(1)/etc/uci-defaults/dnsmasq-extra
 	$(INSTALL_DIR) $(1)/etc/dnsmasq-extra.d
-	$(INSTALL_DATA) ./files/data/{gfwlist,tldn,direct,custom.conf,chnroute.txt} $(1)/etc/dnsmasq-extra.d/
+	$(INSTALL_DATA) ./files/data/{gfwlist,tldn,direct,adblock,custom.conf,chnroute.txt} $(1)/etc/dnsmasq-extra.d/
 endef
 
 $(eval $(call BuildPackage,dnsmasq-extra))
